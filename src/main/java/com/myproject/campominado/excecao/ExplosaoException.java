@@ -1,5 +1,4 @@
 package com.myproject.campominado.excecao;
 
-public class ExplosaoException extends RuntimeException{
-
+public class ExplosaoException extends RuntimeException {
 }

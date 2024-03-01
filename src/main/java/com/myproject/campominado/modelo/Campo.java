@@ -1,6 +1,7 @@
 package com.myproject.campominado.modelo;
 
 import com.myproject.campominado.excecao.ExplosaoException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,11 +66,11 @@ public class Campo {
         return vizinhos.stream().noneMatch(v -> v.minado);
     }
 
-    void minar(){
+    void minar() {
         minado = true;
     }
 
-    public boolean isMinado(){
+    public boolean isMinado() {
         return minado;
     }
 
@@ -77,11 +78,15 @@ public class Campo {
         return marcado;
     }
 
-    public boolean isAberto(){
+    public boolean isAberto() {
         return aberto;
     }
 
-    public boolean isFechado(){
+    void setAberto(boolean aberto) {
+        this.aberto = aberto;
+    }
+
+    public boolean isFechado() {
         return !isAberto();
     }
 
@@ -93,33 +98,33 @@ public class Campo {
         return coluna;
     }
 
-    boolean objetivoAlcancado(){
+    boolean objetivoAlcancado() {
         boolean desvendado = !minado && aberto;
         boolean protegido = minado && marcado;
         return desvendado || protegido;
     }
 
-    long minasNaVizinhanca(){
-      return vizinhos.stream().filter(v -> v.minado).count();
+    long minasNaVizinhanca() {
+        return vizinhos.stream().filter(v -> v.minado).count();
     }
 
-    void reiniciar(){
+    void reiniciar() {
         aberto = false;
         minado = false;
         marcado = false;
     }
 
-    public String toString(){
-        if (marcado){
+    public String toString() {
+        if (marcado) {
             return "X";
-        }else if (aberto && minado){
+        } else if (aberto && minado) {
             return "*";
-        }else if (aberto && minasNaVizinhanca() > 0){
+        } else if (aberto && minasNaVizinhanca() > 0) {
             return Long.toString(minasNaVizinhanca());
-        }else if (aberto){
+        } else if (aberto) {
             return " ";
-        }else {
-            return  "?";
+        } else {
+            return "?";
         }
     }
 }
